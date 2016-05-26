@@ -1,0 +1,648 @@
+/* GLOBAL */
+[data-mogo-ui] {
+  display: none;
+}
+
+.fieldError {
+  background-color: $orange;
+  color: $white;
+  display: none;
+  font-family: 'ProximaNovaRegular';
+  font-size: 15px;
+  line-height: 18px;
+  padding: 10px 12px;
+  margin-top: 10px;
+  position: relative;
+  z-index: 30;
+
+  .arrow {
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid $orange;
+    display: block;
+    position: absolute;
+    top: 100%;
+    height: 0;
+    width: 0;
+  }
+}
+
+.sectionError {
+  display: none;
+  padding-bottom: 18px;
+
+  .icon-caution {
+    clear: left;
+    float: left;
+    line-height: 40px;
+    position: relative;
+    width: 46px;
+
+    &:before {
+      color: $orange;
+      font-size: 2em;
+    }
+  }
+  .errorContent {
+    margin-left: 46px;
+  }
+}
+
+body.disableScroll {
+  overflow-y: scroll;
+  position: fixed;
+  width: 100%;
+}
+
+/* DIALOG */
+#mogo-ui-dialog-overlay {
+  background-color: $black;
+  display: none;
+  opacity: 0.7;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 55;
+}
+
+.mogo-ui-dialog {
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+
+  -webkit-transform: scale(0.2) rotateX(-90deg) translateY(400px);
+  -moz-transform: scale(0.2) rotateX(-90deg) translateY(400px);
+  -ms-transform: scale(0.2) rotateX(-90deg) translateY(400px);
+
+  -webkit-transition: all 0.325s; //ease-in;
+  -moz-transition: all 0.325s;// ease-in;
+  -ms-transition: all 0.325s;// ease-in;
+
+  background-color: $white;
+  max-width: 80%;
+  max-height: 80%;
+  opacity: 0.2;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 56;
+
+  &.shown {
+    display: block;
+    opacity: 1;
+    -webkit-transform: scale(1) rotateX(0deg) translateY(0px);
+    -moz-transform: scale(1) rotateX(0deg) translateY(0px);
+    -ms-transform: scale(1) rotateX(0deg) translateY(0px);
+  }
+
+  .icon-crosscir {
+    color: $black;
+    position: absolute;
+    right: 12px;
+    top: 0;
+
+    &:before {
+      background-color: $white;
+      border-radius: 24px;
+      color: $darkGray;
+      font-size: 24px;
+    }
+
+    &:hover {
+      color: $black;
+    }
+
+    &:focus {
+      color: $black;
+    }
+  }
+
+  .dialog_container {
+    overflow: hidden;
+
+    .dialog_container_content {
+      overflow: auto;
+    }
+  }
+}
+
+// Mobile
+@media #{$screen} {
+  .mogo-ui-dialog {
+    max-width: 95%;
+    padding: 15px 10px;
+  }
+}
+
+// Desktop
+@media #{$small} {
+  .mogo-ui-dialog {
+    padding: 30px 50px;
+  }
+}
+
+/* TEXTFIELD, TEXTAREA */
+.mogo-ui-textfield, .mogo-ui-textarea {
+  position: relative;
+  z-index: 1;
+
+  &.focused {
+    label {
+      &.inner {
+        color: $mediumGray;
+      }
+    }
+  }
+
+  &.disabled {
+    .input-container {
+      input {
+        color: #999;
+        text-shadow: 1px 1px $white;
+      }
+    }
+
+    label {
+      color: #999;
+      text-shadow: 1px 1px $white;
+    }
+  }
+
+  .input-container {
+    position: relative;
+
+    input, textarea {
+      background-color: $faintGray;
+      border: 1px solid $mediumGray;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      color: rgba(0, 0, 0, 0.75);
+      font-size: 17px;
+      line-height: 1em;
+      margin: 0;
+      padding: 10px 40px 10px 8px;
+      height: 42px;
+      width: 100%;
+
+      transition: background-color 0.2s, border 0.2s;
+      -webkit-transition: background-color 0.2s, border 0.2s;
+      -moz-transition: background-color 0.2s, border 0.2s;
+      -ms-transition: background-color 0.2s, border 0.2s;
+
+      &:focus {
+        background-color: $white !important;
+        border: 1px solid $darkGray !important;
+        outline: none;
+      }
+
+      &.error {
+        border: 1px solid $orange !important;
+      }
+    }
+
+    .icon-crosscir {
+      color: $darkGray;
+      display: none;
+      height: 100%;
+      padding: 20px 12px;
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  label {
+    color: $black;
+    font-family: 'ProximaNovaBold';
+    font-weight: 400;
+    margin: 0;
+
+    &.inner {
+      border: 1px solid transparent;
+      cursor: text;
+      font-family: 'ProximaNovaRegular' !important;
+      line-height: 1em;
+      padding: 11px 40px 11px 8px;
+      position: absolute;
+      z-index: 2;
+
+      transition: color 0.2s;
+      -webkit-transition: color 0.2s;
+      -moz-transition: color 0.2s;
+      -ms-transition: color 0.2s;
+    }
+  }
+}
+
+.mogo-ui-textarea {
+  .input-container {
+    textarea {
+      height: auto;
+      resize: none;
+    }
+
+    .icon-crosscir {
+      height: auto;
+    }
+  }
+}
+
+/* SELECT */
+.mogo-ui-select {
+  margin-bottom: 18px;
+  position: relative;
+
+  &.disabled {
+    .outer-container {
+      .input-container {
+        .textLabel {
+          color: #999;
+          text-shadow: 1px 1px $white;
+        }
+
+        .selector:before {
+          color: $mediumGray;
+        }
+      }
+    }
+  }
+
+  &.error {
+    .outer-container {
+      .input-container {
+        border: 1px solid $orange;
+      }
+    }
+  }
+
+  &.expanded {
+    .outer-container {
+      .input-container {
+        background-color: $white;
+      }
+    }
+  }
+
+  label {
+    color: $black;
+    font-family: 'ProximaNovaBold';
+    font-weight: 400;
+    margin: 0;
+
+    &.inner {
+      position: absolute;
+      margin-left: -9999px;
+    }
+  }
+
+  .outer-container {
+    font-size: 18px;
+    height: 100%;
+    position: relative;
+
+    .input-container {
+      background-color: $faintGray;
+      border: 1px solid $mediumGray;
+      min-height: 42px;
+      padding: 0 42px 0 8px;
+      position: relative;
+      white-space: nowrap;
+
+      transition: border 0.2s, background-color 0.175s;
+      -webkit-transition: border 0.2s, background-color 0.175s;
+      -moz-transition: border 0.2s, background-color 0.175s;
+      -ms-transition: border 0.2s, background-color 0.175s;
+
+      span.textLabel {
+        display: block;
+        font-family: "ProximaNovaRegular";
+        line-height: 42px;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+      }
+
+      .selector {
+        color: $black;
+        cursor: default;
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+
+        &:before {
+          position: absolute;
+          right: 13px;
+          top: 50%;
+        }
+
+        &:hover:before {
+          color: $mediumGray;
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    ul {
+      background-color: $white;
+      border: 1px solid $lightGray;
+      border-top: 0;
+      display: none;
+      margin-top: -1px;
+      min-width: 100%;
+      overflow: auto;
+      position: absolute;
+      left: 0;
+      top: 100%;
+      z-index: 3;
+
+      &:focus {
+        outline: none;
+      }
+
+      &.inverse {
+        border: 1px solid $lightGray;
+        border-bottom: 1px dotted $lightGray;
+        margin-top: 0;
+      }
+
+      li {
+        font-size: 16px;
+        padding: 4px 6px;
+
+        transition: background-color 0.2s;
+        -webkit-transition: background-color 0.2s;
+        -moz-transition: background-color 0.2s;
+        -ms-transition: background-color 0.2s;
+
+        &:focus {
+          background-color: #e4e4e4 !important;
+          outline: none;
+        }
+
+        &.selected {
+          background-color: $faintGray;
+        }
+
+        &.disabled {
+          background-color: $white !important;
+          color: $mediumGray;
+        }
+      }
+    }
+
+    .horiz_scroll::-webkit-scrollbar {
+      -webkit-appearance:none !important;
+      width:11px !important
+    }
+    .horiz_scroll::-webkit-scrollbar-thumb {
+      border-radius:8px !important;
+      border:2px solid white !important;
+      background-color:rgba(0,0,0,.5) !important
+    }
+    .horiz_scroll::-webkit-scrollbar:active,
+    .horiz_scroll::-webkit-scrollbar:hover,
+    .horiz_scroll::-webkit-scrollbar:focus{border-radius:8px !important;border:2px solid white !important;background-color:#ccc !important}
+  }
+
+  select {
+    background-color: transparent;
+    height: 42px;
+    line-height: 42px;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0 0 0 -9999px;
+  }
+}
+
+html.touch .mogo-ui-select select {
+  margin-left: 0;
+}
+/* TEXTFIELD/PHONE COMBINATION */
+.phone {
+  label {
+    color: $black;
+    font-family: 'ProximaNovaBold';
+    font-weight: 400;
+    margin: 0;
+  }
+
+  .select-container {
+    float: left;
+    height: 42px;
+    width: 45px;
+
+    .mogo-ui-select {
+      .outer-container {
+        .input-container {
+          padding-right: 8px;
+
+          .selector {
+            &:before {
+              display: none;
+            }
+          }
+        }
+      }
+      .textLabel {
+        .text {
+          display: none;
+        }
+        .Home, .Mobile, .Other {
+          font-size: 15px;
+          &:before {
+            font-size: 18px;
+            position: absolute;
+          }
+        }
+      }
+    }
+  }
+
+  .textfield-container {
+    margin-left: 45px;
+
+    .mogo-ui-textfield {
+      .input-container {
+        input, input.error {
+          border-left: none !important;
+
+          &:focus {
+            border-left: none !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* RADIO, CHECKBOX */
+.mogo-ui-radio, .mogo-ui-checkbox {
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.mogo-ui-radio, .mogo-ui-checkbox {
+  margin: 0;
+  margin-top: 10px;
+
+  &:hover {
+    .input-container {
+      .radio-button, .checkbox-button {
+        border: 1px solid $darkGray;
+      }
+    }
+  }
+
+  &.focused {
+    .input-container {
+      .radio-button, .checkbox-button {
+        border: 1px solid $darkGray;
+        outline: none;
+      }
+    }
+  }
+
+  &.selected {
+    .input-container {
+      .radio-button, .checkbox-button {
+        .checked {
+          background-color: $heavyGray;
+
+          transition: background-color 0.2s;
+          -webkit-transition: background-color 0.2s;
+          -moz-transition: background-color 0.2s;
+          -ms-transition: background-color 0.2s;
+        }
+      }
+    }
+
+    &.disabled {
+      .input-container {
+        .radio-button, .checkbox-button {
+          .checked {
+            background-color: $lightGray;
+          }
+        }
+      }
+    }
+  }
+
+  &.disabled {
+    .input-container {
+      .radio-button, .checkbox-button {
+        border: 1px solid $lightGray !important;
+      }
+    }
+
+    label {
+      color: $mediumGray;
+    }
+  }
+
+  &.error {
+    .input-container {
+      .radio-button, .checkbox-button {
+        border: 1px solid $orange;
+      }
+    }
+  }
+
+  label {
+    color: $black;
+    font-family: 'ProximaNovaRegular';
+    line-height: 24px;
+    margin: 0;
+    margin-left: 25px;
+  }
+
+  .input-container {
+    position: relative;
+
+    .radio-button {
+      border: 1px solid $lightGray;
+      border-radius: 1000px;
+      padding: 3px;
+      position: absolute;
+      top: 2px;
+      height: 16px;
+      width: 16px;
+
+      transition: border 0.2s;
+      -webkit-transition: border 0.2s;
+      -moz-transition: border 0.2s;
+      -ms-transition: border 0.2s;
+
+      .checked {
+        background-color: transparent;
+        border-radius: 1000px;
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    .checkbox-button {
+      border: 1px solid $lightGray;
+      padding: 3px;
+      position: absolute;
+      top: 2px;
+      height: 16px;
+      width: 16px;
+
+      transition: border 0.2s;
+      -webkit-transition: border 0.2s;
+      -moz-transition: border 0.2s;
+      -ms-transition: border 0.2s;
+
+      .checked {
+        background-color: transparent;
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    input {
+      float: left;
+      line-height: 24px;
+      margin: 0;
+      opacity: 0.01;
+      height: 25px;
+      width: 25px;
+    }
+  }
+}
+
+/* BOOLEAN GROUP */
+.mogo-ui-boolean-group {
+  fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  legend {
+    background-color: transparent;
+    color: $black;
+    font-family: 'ProximaNovaBold';
+    font-size: 17px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+  }
+}

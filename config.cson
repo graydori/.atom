@@ -1,0 +1,29 @@
+"*":
+  "atom-beautify":
+    general:
+      _analyticsUserId: "eebbbfc2-b23e-4dd4-8b0d-54007088c536"
+  core:
+    themes: [
+      "seti-ui"
+      "seti-syntax"
+    ]
+  editor:
+    tabLength: 4
+    tabType: "soft"
+  "exception-reporting":
+    userId: "605c9847-f304-ad9c-83e3-ed4d295ebbad"
+  "linter-scss-lint": {}
+  minimap:
+    plugins:
+      "highlight-selected": true
+      "highlight-selectedDecorationsZIndex": 0
+      pigments: true
+      pigmentsDecorationsZIndex: 0
+  "split-diff":
+    diffWords: true
+    ignoreWhitespace: true
+    leftEditorColor: "red"
+    rightEditorColor: "green"
+    syncHorizontalScroll: true
+  welcome:
+    showOnStartup: false
